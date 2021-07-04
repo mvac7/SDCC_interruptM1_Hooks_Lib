@@ -31,14 +31,8 @@ This project is an Open Source library. You can add part or all of this code in 
 
 It allows working with both the interruptions produced by the VDP (TIMI), and those produced by other peripherals (KEYI).
 
-It is a very light library, but if you need to gain a few Bytes and you are only going to use the VDP interrupts, you can use the reduced version interruptM1_TIMI
-
-**ATTENTION!** Although they can be used for MSX-DOS applications, you must be aware of an existing problem. 
-Because the ISR when it executes the hook has the BIOS visible, you will have to control that your functions for the interruption are located above page 0. 
-If your application is small, you should copy your function in the highest area of the RAM, 
-although you can also substitute the ISR of the system for yours but it will require a different library than this one.
-
-Remember that an interrupt routine for a hook is not an ISR. You have more information in the How to Use it section.
+This library can be used to program applications that run from MSX-BASIC and as ROMs. 
+It can also be used in MSX-DOS but under certain conditions. To learn more, see the "How to use this" section.
 
 Use them for developing MSX applications using Small Device C Compiler (SDCC).
 
@@ -112,7 +106,7 @@ I want to give a special thanks to all those who freely share their knowledge wi
  
 
 
-## How to use
+## How to use this
 
 This library contains several functions to have full control of the hooks of the M1 interrupt. 
 Allows you to save the system hook, replace it, disable it, and retrieve it. 
@@ -122,11 +116,8 @@ If you want to use the VBLANK interrupt you will have to use the TIMI hook.
 The KEYI hook will be executed whenever the M1 interrupt is triggered (like VBLANK), 
 but it is only recommended when you have specific hardware that uses it (RS232C, MIDI, etc ...).
 
-SDCC provides some extended keywords to program an Interrupt Service Routine (ISR), but it is useless in our case as we use the system ISR (BIOS). 
-Therefore we should not add `__interrupt` in our functions since it would add redundant code that could affect the correct execution of our program.
-
 Remember that in the hook you do not have to connect an ISR type function. 
-The hook is called by the system's ISR, so you will have interrupts disabled and all records saved (including alternates)..
+The hook is called by the system's ISR, so you will have interrupts disabled and all records saved (including alternates).
 
 Nor do you have to worry about reading the state of register 0 of the VDP since the ISR does, 
 but it is recommended that at the beginning and end of your function, you save and retrieve the pair of AF registers. 
@@ -134,6 +125,16 @@ For this I have included two definitions for when it is programmed in C: PUSH_AF
 
 When you leave your function you do not have to do anything either. 
 The system ISR is responsible for retrieving the values from the registers and triggering the interrupts.
+
+Although they can be used for **MSX-DOS** applications, you must be aware of an existing problem. 
+Because the ISR when it executes the hook has the BIOS visible, you will have to control that your functions for the interruption are located above page 0. 
+If your application is small, you should copy your function in the highest area of the RAM, 
+although you can also substitute the ISR of the system for yours but it will require a different library than this one.
+
+**ATTENTION!** SDCC provides some extended keywords to program an Interrupt Service Routine (ISR), but it is useless in our case as we use the system ISR (BIOS). 
+Therefore we should **NOT ADD** `__interrupt` in our functions since it would add redundant code that could affect the correct execution of our program.
+
+
 
 Here is an example:
 

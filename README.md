@@ -24,20 +24,20 @@ Programming language: C and Z80 assembler
 
 ## Index
 
-- 1. Description
-- 2. License
-- 3. Acknowledgments
-- 4. Requirements
-- 5. Definitions
-- 6. Functions
-- 7. How to use this
-- 8. Documentation
+* 1 Description
+* 2 License
+* 3 Acknowledgments
+* 4 Requirements
+* 5 Definitions
+* 6 Functions
+* 7 How to use this
+* 8 Documentation
 
 <br/>
 
 ---
 
-## 1. Description
+## 1 Description
 
 This library provides you with various functions to have total control over the hooks used in the ISR of the M1 interrupt included in the MSX system (BIOS/MSX-DOS).
 
@@ -56,15 +56,16 @@ This library is part of the [MSX fR3eL Project](https://github.com/mvac7/SDCC_MS
 
 Enjoy it!
 
+<br/>
 
 
-## 2. License
+## 2 License
 
 <br/>
 
 
 
-## 3. Acknowledgments
+## 3 Acknowledgments
   
 I want to give a special thanks to all those who freely share their knowledge with the MSX developer community.
 
@@ -87,14 +88,14 @@ I want to give a special thanks to all those who freely share their knowledge wi
 
 
 
-## 4. Requirements
+## 4 Requirements
 
 * Small Device C Compiler (SDCC) v4.1 > http://sdcc.sourceforge.net/
 * Hex2bin v2.5 > http://hex2bin.sourceforge.net/
 
 
 
-## 5. Definitions
+## 5 Definitions
 
 * **DI** Disable interrupts (Z80 Assembler DI)
 * **EI** Enable interrupts (Z80 Assembler EI)
@@ -106,7 +107,7 @@ I want to give a special thanks to all those who freely share their knowledge wi
 
 
 
-## 6. Functions
+## 6 Functions
 
 * void **Save_TIMI**() Save TIME hook vector.
 * void **Install_TIMI**(void (*isr)(void)) Set new TIMI hook vector.
@@ -122,7 +123,7 @@ I want to give a special thanks to all those who freely share their knowledge wi
 
 ---
 
-## 7. How to use this
+## 7 How to use this
 
 This library contains several functions to have full control of the hooks of the M1 interrupt. 
 Allows you to save the system hook, replace it, disable it, and retrieve it. 
@@ -236,8 +237,7 @@ __endasm;
 
 ---
 
-
-## 8. Documentation
+## 8 Documentation
 
 ### English
 

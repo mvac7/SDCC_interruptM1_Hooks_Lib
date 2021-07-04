@@ -24,14 +24,14 @@ Programming language: C and Z80 assembler
 
 ## Index
 
-* 1. Description
-* 2. License
-* 3. Acknowledgments
-* 4. Requirements
-* 5. Definitions
-* 6. Functions
-* 7. How to use this
-* 8. Documentation
+- 1. Description
+- 2. License
+- 3. Acknowledgments
+- 4. Requirements
+- 5. Definitions
+- 6. Functions
+- 7. How to use this
+- 8. Documentation
 
 <br/>
 

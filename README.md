@@ -35,7 +35,8 @@ It is a very light library, but if you need to gain a few Bytes and you are only
 
 **ATTENTION!** Although they can be used for MSX-DOS applications, you must be aware of an existing problem. 
 Because the ISR when it executes the hook has the BIOS visible, you will have to control that your functions for the interruption are located above page 0. 
-If your application is small, you should copy your function in the highest area of the RAM, although you can also substitute the ISR of the system for yours but it will require a different library than this one.
+If your application is small, you should copy your function in the highest area of the RAM, 
+although you can also substitute the ISR of the system for yours but it will require a different library than this one.
 
 Remember that an interrupt routine for a hook is not an ISR. You have more information in the How to Use it section.
 
@@ -116,6 +117,13 @@ I want to give a special thanks to all those who freely share their knowledge wi
 This library contains several functions to have full control of the hooks of the M1 interrupt. 
 Allows you to save the system hook, replace it, disable it, and retrieve it. 
 The way you work is up to you.
+
+If you want to use the VBLANK interrupt you will have to use the TIMI hook. 
+The KEYI hook will be executed whenever the M1 interrupt is triggered (like VBLANK), 
+but it is only recommended when you have specific hardware that uses it (RS232C, MIDI, etc ...).
+
+SDCC provides some extended keywords to program an Interrupt Service Routine (ISR), but it is useless in our case as we use the system ISR (BIOS). 
+Therefore we should not add `__interrupt` in our functions since it would add redundant code that could affect the correct execution of our program.
 
 Remember that in the hook you do not have to connect an ISR type function. 
 The hook is called by the system's ISR, so you will have interrupts disabled and all records saved (including alternates)..
@@ -205,3 +213,26 @@ __endasm;
 
 
 ```
+
+
+
+## Documentation
+
+### English
+
+* Z80 Family - [CPU User Manual](https://zany80.github.io/documentation/Z80/UserManual.html) (by ZiLOG) [(PDF)](http://map.grauw.nl/resources/cpu/z80.pdf)
+* MSX2 Technical Handbook - [Chapter 2](https://github.com/Konamiman/MSX2-Technical-Handbook/blob/master/md/Chapter2.md#45-interrupt-usage) - 4.5 Interrupt usage
+* The MSX Red Book - [4. ROM BIOS - KEYINT](https://github.com/gseidler/The-MSX-Red-Book/blob/master/the_msx_red_book.md#chapter_4)
+* [Z80 Family Interrupt Structure](http://www.z80.info/1653.htm) (by Michael Moore)
+* MSX Computer Magazine - Nº 51 Januari 1992 - [Interrupts](http://map.grauw.nl/articles/interrupts.php) - Page 6. (In English on MSX Assembly Page) 
+* MSX Resource Center - Wiki - [System hooks](https://www.msx.org/wiki/System_hooks)
+
+
+
+### Spanish
+
+* Karoshi MSX Community - [Interrupciones del MSX](http://karoshi.auic.es/index.php?topic=947.0) (por SapphiRe)
+* MSX Inside 005 - [Interrupciones](https://www.youtube.com/watch?v=dJymuMfgw9I) (por SapphiRe)
+* MSX Inside 006 - [Interrupciones VBLANK](https://www.youtube.com/watch?v=aUkHk_mjtOU) (por SapphiRe)
+* MSX Inside 007 - [Interrupciones de Línea](https://www.youtube.com/watch?v=E8nTwqaxEAg) (por SapphiRe)
+

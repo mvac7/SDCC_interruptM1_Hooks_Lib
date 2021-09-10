@@ -65,21 +65,21 @@ void Install_TIMI(void (*isr)(void)) __naked
 {
 isr;
 __asm
-	push IX
-	ld   IX,#0
-	add  IX,SP
- 
-	; Set new TIMI ISR vector
-	di
-	ld   A,#0xC3       ;add a JP
-	ld   (#HTIMI),A
-	ld   L,4(IX)
-	ld   H,5(IX)
-	ld   (#HTIMI+1),HL
-	ei
-	
-	pop IX
-	ret
+  push IX
+  ld   IX,#0
+  add  IX,SP
+  
+  ; Set new TIMI ISR vector
+  di
+  ld   A,#0xC3       ;add a JP
+  ld   (#HTIMI),A
+  ld   L,4(IX)
+  ld   H,5(IX)
+  ld   (#HTIMI+1),HL
+  ei
+  
+  pop IX
+  ret
 __endasm;
 }
 

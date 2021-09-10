@@ -72,6 +72,7 @@ I want to give a special thanks to all those who freely share their knowledge wi
 * Avelino Herrera > [(WEB)](http://msx.avelinoherrera.com/index_es.html)
 * Nerlaska > [(Blog)](http://albertodehoyonebot.blogspot.com.es)
 * Marq > [(Marq)](http://www.kameli.net/marq/)
+* MSXKun/Paxanga soft > [(WEB)](http://paxangasoft.retroinvaders.com/)
 * Fubukimaru [(gitHub)](https://github.com/Fubukimaru)
 * Andrear > [(Blog)](http://andrear.altervista.org/home/msxsoftware.php)
 * Sapphire/Z80ST > [(WEB)](http://z80st.auic.es/)
@@ -155,7 +156,7 @@ Therefore we should **NOT ADD** `__interrupt` in our functions since it would ad
 
 Here is an example:
 
-```
+```c
 /* -----------------------------------------------------------------------------
    Any example...
 ----------------------------------------------------------------------------- */

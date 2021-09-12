@@ -1,8 +1,6 @@
 # How to use the Interrupt M1 Hooks MSX SDCC Library
 
 
----
-
 
 ## Sorry!: This text is pending correction of the English translation. <<<<<<<<
 
@@ -63,13 +61,13 @@ Enjoy it!
 
 ## 3 Definitions
 
-* `DisableI` Disable interrupts. Add `DI` code in Z80 assembler.
-* `EnableI` Enable interrupts. Add `EI` code in Z80 assembler.
-
-* `PUSH_AF` Saves the AF value on the stack. Required for starting TIMI (VBLANK) type functions. Add `PUSH AF` code in Z80 assembler.
-* `POP_AF`  Retrieves the value of AF from the stack. Required for the end of TIMI (VBLANK) type functions. Add `POP AF` code in Z80 assembler.
-
-* `HALT` Suspends all actions until the next interrupt. Add `HALT` code in Z80 assembler.
+Name | Description
+------------ | -------------
+`DisableI` | Disable interrupts. <br/> Add `DI` code in Z80 assembler.
+`EnableI` | Enable interrupts. <br/> Add `EI` code in Z80 assembler.
+`PUSH_AF` | Saves the AF value on the stack. Required for starting TIMI (VBLANK) type functions. <br/> Add `PUSH AF` code in Z80 assembler.
+`POP_AF` | Retrieves the value of AF from the stack. Required for the end of TIMI (VBLANK) type functions. <br/> Add `POP AF` code in Z80 assembler.
+`HALT` | Suspends all actions until the next interrupt. <br/> Add `HALT` code in Z80 assembler.
 
 
 <br/>

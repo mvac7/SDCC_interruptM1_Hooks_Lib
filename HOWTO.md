@@ -84,7 +84,7 @@ Name | Description
 <tr><th>Input</th><td> --- </td></tr>
 <tr><th>Output</th><td> --- </td></tr>
 <tr><th>Examples:</th>
-<td><pre><code>Save_TIMI();</code></pre></td></tr>
+<td><code>Save_TIMI();</code></td></tr>
 </table>
 
 
@@ -95,7 +95,7 @@ Name | Description
 <tr><th>Input</th><td>[func] Function</td></tr>
 <tr><th>Output</th><td> --- </td></tr>
 <tr><th>Examples:</th>
-<td><pre><code>Install_TIMI(my_TIMI);</code></pre></td></tr>
+<td><code>Install_TIMI(my_TIMI);</code></td></tr>
 </table>
 
 
@@ -106,7 +106,7 @@ Name | Description
 <tr><th>Input</th><td> --- </td></tr>
 <tr><th>Output</th><td> --- </td></tr>
 <tr><th>Examples:</th>
-<td><pre><code>Restore_TIMI();</code></pre></td></tr>
+<td><code>Restore_TIMI();</code></td></tr>
 </table>
 
 
@@ -117,7 +117,7 @@ Name | Description
 <tr><th>Input</th><td> --- </td></tr>
 <tr><th>Output</th><td> --- </td></tr>
 <tr><th>Examples:</th>
-<td><pre><code>Disable_TIMI();</code></pre></td></tr>
+<td><code>Disable_TIMI();</code></td></tr>
 </table>
 
 
@@ -128,7 +128,7 @@ Name | Description
 <tr><th>Input</th><td> --- </td></tr>
 <tr><th>Output</th><td> --- </td></tr>
 <tr><th>Examples:</th>
-<td><pre><code>Save_KEYI();</code></pre></td></tr>
+<td><code>Save_KEYI();</code></td></tr>
 </table>
 
 
@@ -139,7 +139,7 @@ Name | Description
 <tr><th>Input</th><td>[func] Function</td></tr>
 <tr><th>Output</th><td> --- </td></tr>
 <tr><th>Examples:</th>
-<td><pre><code>Install_KEYI(my_KEYI);</code></pre></td></tr>
+<td><code>Install_KEYI(my_KEYI);</code></td></tr>
 </table>
 
 
@@ -150,7 +150,7 @@ Name | Description
 <tr><th>Input</th><td> --- </td></tr>
 <tr><th>Output</th><td> --- </td></tr>
 <tr><th>Examples:</th>
-<td><pre><code>Restore_KEYI();</code></pre></td></tr>
+<td><code>Restore_KEYI();</code></td></tr>
 </table>
 
 
@@ -161,7 +161,7 @@ Name | Description
 <tr><th>Input</th><td> --- </td></tr>
 <tr><th>Output</th><td> --- </td></tr>
 <tr><th>Examples:</th>
-<td><pre><code>Disable_KEYI();</code></pre></td></tr>
+<td><code>Disable_KEYI();</code></td></tr>
 </table>
 
  

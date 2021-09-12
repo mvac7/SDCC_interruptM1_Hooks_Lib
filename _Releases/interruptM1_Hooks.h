@@ -21,8 +21,8 @@
 
 
 
-#define  DI               __asm di __endasm
-#define  EI               __asm ei __endasm
+#define  DisableI         __asm di __endasm
+#define  EnableI          __asm ei __endasm
 
 #define  PUSH_AF          __asm push AF __endasm
 #define  POP_AF           __asm pop  AF __endasm

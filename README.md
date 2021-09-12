@@ -31,7 +31,7 @@ Programming language: C and Z80 assembler
 * 5 Definitions
 * 6 Functions
 * 7 How to use this
-* 8 Documentation
+* 8 References
 
 <br/>
 
@@ -89,6 +89,10 @@ I want to give a special thanks to all those who freely share their knowledge wi
 
 
 
+<br/>
+
+---
+
 ## 4 Requirements
 
 * Small Device C Compiler (SDCC) v4.1 > http://sdcc.sourceforge.net/
@@ -98,27 +102,27 @@ I want to give a special thanks to all those who freely share their knowledge wi
 
 ## 5 Definitions
 
-* **DI** Disable interrupts (Z80 Assembler DI)
-* **EI** Enable interrupts (Z80 Assembler EI)
+* `DisableI` Disable interrupts. Add `DI` code in Z80 assembler.
+* `EnableI` Enable interrupts. Add `EI` code in Z80 assembler.
 
-* **PUSH_AF** Saves the AF value on the stack. Required for starting TIMI (VBLANK) type functions (Z80 Assembler PUSH AF)
-* **POP_AF**  Retrieves the value of AF from the stack. Required for the end of TIMI (VBLANK) type functions (Z80 Assembler POP AF)
+* `PUSH_AF` Saves the AF value on the stack. Required for starting TIMI (VBLANK) type functions. Add `PUSH AF` code in Z80 assembler.
+* `POP_AF`  Retrieves the value of AF from the stack. Required for the end of TIMI (VBLANK) type functions. Add `POP AF` code in Z80 assembler.
 
-* **HALT** Suspends all actions until the next interrupt (Z80 Assembler HALT)
+* `HALT` Suspends all actions until the next interrupt. Add `HALT` code in Z80 assembler.
 
 
 
 ## 6 Functions
 
-* void **Save_TIMI**() Save TIME hook vector.
-* void **Install_TIMI**(void (*isr)(void)) Set new TIMI hook vector.
-* void **Restore_TIMI**() Restore old TIMI hook vector
-* void **Disable_TIMI**() Disable the TIMI hook (Add a ret on the hook).
+* void `Save_TIMI()` Save TIME hook vector.
+* void `Install_TIMI(void (*isr)(void))` Set new TIMI hook vector.
+* void `Restore_TIMI()` Restore old TIMI hook vector
+* void `Disable_TIMI()` Disable the TIMI hook (Add a ret on the hook).
 
-* void **Save_KEYI**() Save KEYI hook vector.
-* void **Install_KEYI**(void (*isr)(void)) Set new KEYI hook vector.
-* void **Restore_KEYI**() Restore old KEYI hook vector
-* void **Disable_KEYI**() Disable the KEYI hook (Add a ret on the hook).
+* void `Save_KEYI()` Save KEYI hook vector.
+* void `Install_KEYI(void (*isr)(void))` Set new KEYI hook vector.
+* void `Restore_KEYI()` Restore old KEYI hook vector
+* void `Disable_KEYI()` Disable the KEYI hook (Add a ret on the hook).
  
 <br/>
 
@@ -238,7 +242,7 @@ __endasm;
 
 ---
 
-## 8 Documentation
+## 8 References
 
 ### English
 

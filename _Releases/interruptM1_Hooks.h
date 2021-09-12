@@ -36,7 +36,7 @@
 /* =============================================================================
  Save_TIMI
 
- Function : Save TIME hook vector
+ Function : Save TIMI hook vector
  Input    : -
  Output   : -
 ============================================================================= */
@@ -51,7 +51,7 @@ void Save_TIMI();
  Input    : Function address
  Output   : -
 ============================================================================= */
-void Install_TIMI(void (*isr)(void));
+void Install_TIMI(void (*func)(void));
 
 
 
@@ -95,7 +95,7 @@ void Save_KEYI();
  Input    : Function address
  Output   : -
 ============================================================================= */
-void Install_KEYI(void (*isr)(void));
+void Install_KEYI(void (*func)(void));
 
 
 

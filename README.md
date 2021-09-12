@@ -22,22 +22,10 @@ Programming language: C and Z80 assembler
 
 <br/>
 
-## Index
-
-* 1 Description
-* 2 License
-* 3 Acknowledgments
-* 4 Requirements
-* 5 Definitions
-* 6 Functions
-* 7 How to use this
-* 8 References
-
-<br/>
 
 ---
 
-## 1 Description
+## Description
 
 This library provides you with various functions to have total control over the hooks used in the ISR of the M1 interrupt included in the MSX system (BIOS/MSX-DOS).
 
@@ -50,6 +38,8 @@ It can also be used in MSX-DOS but under certain conditions. To learn more, see 
 
 Use them for developing MSX applications using Small Device C Compiler (SDCC).
 
+You can access the documentation here with [How to use the library](https://github.com/mvac7/SDCC_interruptM1_Hooks/blob/master/HOWTO.md).
+
 In the source code (\examples), you can find applications for testing and learning purposes.
 
 This library is part of the [MSX fR3eL Project](https://github.com/mvac7/SDCC_MSX_fR3eL).
@@ -59,13 +49,13 @@ Enjoy it!
 <br/>
 
 
-## 2 License
+## License
 
 <br/>
 
 
 
-## 3 Acknowledgments
+## Acknowledgments
   
 I want to give a special thanks to all those who freely share their knowledge with the MSX developer community.
 
@@ -85,164 +75,14 @@ I want to give a special thanks to all those who freely share their knowledge wi
 * Karoshi MSX Community > [(WEB)](http://karoshi.auic.es/)
 * BlueMSX emulator >> [(WEB)](http://www.bluemsx.com/)
 * OpenMSX emulator >> [(WEB)](http://openmsx.sourceforge.net/)
+* [WebMSX](https://webmsx.org/) emulator by Paulo A. Peccin >> [(gitHub)](https://github.com/ppeccin/webmsx)
+* fMSX emulator by Marat Fayzullin [WEB](https://fms.komkon.org/fMSX/)
 * Meisei emulator >> ?
 
 
-
-<br/>
-
 ---
 
-## 4 Requirements
-
-* Small Device C Compiler (SDCC) v4.1 > http://sdcc.sourceforge.net/
-* Hex2bin v2.5 > http://hex2bin.sourceforge.net/
-
-
-
-## 5 Definitions
-
-* `DisableI` Disable interrupts. Add `DI` code in Z80 assembler.
-* `EnableI` Enable interrupts. Add `EI` code in Z80 assembler.
-
-* `PUSH_AF` Saves the AF value on the stack. Required for starting TIMI (VBLANK) type functions. Add `PUSH AF` code in Z80 assembler.
-* `POP_AF`  Retrieves the value of AF from the stack. Required for the end of TIMI (VBLANK) type functions. Add `POP AF` code in Z80 assembler.
-
-* `HALT` Suspends all actions until the next interrupt. Add `HALT` code in Z80 assembler.
-
-
-
-## 6 Functions
-
-* void `Save_TIMI()` Save TIME hook vector.
-* void `Install_TIMI(void (*isr)(void))` Set new TIMI hook vector.
-* void `Restore_TIMI()` Restore old TIMI hook vector
-* void `Disable_TIMI()` Disable the TIMI hook (Add a ret on the hook).
-
-* void `Save_KEYI()` Save KEYI hook vector.
-* void `Install_KEYI(void (*isr)(void))` Set new KEYI hook vector.
-* void `Restore_KEYI()` Restore old KEYI hook vector
-* void `Disable_KEYI()` Disable the KEYI hook (Add a ret on the hook).
- 
-<br/>
-
----
-
-## 7 How to use this
-
-This library contains several functions to have full control of the hooks of the M1 interrupt. 
-Allows you to save the system hook, replace it, disable it, and retrieve it. 
-The way you work is up to you.
-
-If you want to use the VBLANK interrupt you will have to use the TIMI hook. 
-The KEYI hook will be executed whenever the M1 interrupt is triggered (like VBLANK), 
-but it is only recommended when you have specific hardware that uses it (RS232C, MIDI, etc ...).
-
-Remember that in the hook you do not have to connect an ISR type function. 
-The hook is called by the system's ISR, so you will have interrupts disabled and all records saved (including alternates).
-
-Nor do you have to worry about reading the state of register 0 of the VDP since the ISR does, 
-but it is recommended that at the beginning and end of your function, you save and retrieve the pair of AF registers. 
-For this I have included two definitions for when it is programmed in C: PUSH_AF and POP_AF.
-
-When you leave your function you do not have to do anything either. 
-The system ISR is responsible for retrieving the values from the registers and triggering the interrupts.
-
-Although they can be used for **MSX-DOS** applications, you must be aware of an existing problem. 
-Because the ISR when it executes the hook has the BIOS visible, you will have to control that your functions for the interruption are located above page 0. 
-If your application is small, you should copy your function in the highest area of the RAM, 
-although you can also substitute the ISR of the system for yours but it will require a different library than this one.
-
-**ATTENTION!** SDCC provides some extended keywords to program an Interrupt Service Routine (ISR), but it is useless in our case as we use the system ISR (BIOS). 
-Therefore we should **NOT ADD** `__interrupt` in our functions since it would add redundant code that could affect the correct execution of our program.
-
-
-
-Here is an example:
-
-```c
-/* -----------------------------------------------------------------------------
-   Any example...
------------------------------------------------------------------------------ */
-
-void TestM1();
-
-void my_TIMI1();
-void my_TIMI2();
-
-
-
-
-void main()
-{
-    Save_TIMI();   // save the old hook vector 
-
-    Install_TIMI(my_TIMI1);  // Install the first function for the interrupt
-    
-    TestM1();
-    
-    Disable_TIMI(); // disable hook vector
-    
-    TestM1();
-    
-    Install_TIMI(my_TIMI2);   // Install the second function for the interrupt 
-    
-    TestM1();        
-
-    Restore_TIMI(); // restore the old hook vector
-}
-
-
-
-void TestM1()
-{
-    char n=255;
-    
-    while(n>0)
-    {
-        HALT;
-        n--;
-    }
-}
-
-
-
-// C
-void my_TIMI1()
-{
-  PUSH_AF;
-    
-// your C code goes here
-  
-    
-  POP_AF;
-}
-
-
-
-// assembler
-void my_TIMI2() __naked
-{
-__asm
-  push AF
-      
-; your Assembler code goes here
-
-    
-  pop AF
-  ret  
-__endasm;
-}
-
-
-```
-
-
-<br/>
-
----
-
-## 8 References
+## References
 
 ### English
 

@@ -61,15 +61,15 @@ __endasm;
  Input    : Function address
  Output   : -
 ============================================================================= */
-void Install_TIMI(void (*isr)(void)) __naked
+void Install_TIMI(void (*func)(void)) __naked
 {
-isr;
+func;
 __asm
   push IX
   ld   IX,#0
   add  IX,SP
   
-  ; Set new TIMI ISR vector
+  ; Set new TIMI vector
   di
   ld   A,#0xC3       ;add a JP
   ld   (#HTIMI),A
@@ -161,9 +161,9 @@ __endasm;
  Input    : Function address
  Output   : -
 ============================================================================= */
-void Install_KEYI(void (*isr)(void)) __naked
+void Install_KEYI(void (*func)(void)) __naked
 {
-isr;
+func;
 __asm
 	push IX
 	ld   IX,#0

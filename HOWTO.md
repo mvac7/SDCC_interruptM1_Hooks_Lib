@@ -207,7 +207,7 @@ although you can also substitute the ISR of the system for yours but it will req
 
 
 
-**Example:**
+### Example:
 
 This example is illustrative only. 
 In the `\examples` folder of the project sources you will find a complete application where you can check the behavior of the library.

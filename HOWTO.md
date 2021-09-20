@@ -201,8 +201,9 @@ Because the ISR when it executes the hook has the BIOS visible, you will have to
 If your application is small, you should copy your function in the highest area of the RAM, 
 although you can also substitute the ISR of the system for yours but it will require a different library than this one.
 
-**ATTENTION!** SDCC provides some extended keywords to program an Interrupt Service Routine (ISR), but it is useless in our case as we use the system ISR (BIOS). 
-Therefore we should **NOT ADD** `__interrupt` in our functions since it would add redundant code that could affect the correct execution of our program.
+| ATTENTION! |
+| --- | 
+| SDCC provides some extended keywords to program an Interrupt Service Routine (ISR), but it is useless in our case as we use the system ISR (BIOS). <br/> Therefore we should **NOT ADD** `__interrupt` in our functions since it would add redundant code that could affect the correct execution of our program. |
 
 
 
@@ -213,7 +214,7 @@ In the `\examples` folder of the project sources you will find a complete applic
 
 ```c
 /* -----------------------------------------------------------------------------
-   Any example...
+   Interrupt Mode 1 TIMI hook Example
 ----------------------------------------------------------------------------- */
 #include "../include/interruptM1.h"
 

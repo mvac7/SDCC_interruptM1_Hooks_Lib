@@ -14,6 +14,8 @@
 - 2 Requirements
 - 3 Definitions
 - 4 Functions
+   - 4.1 TIMI Hook Functions
+   - 4.2 KEYI Hook Functions
 - 5 How to use this
 - 6 References
    - 6.1 English
@@ -36,7 +38,7 @@ It can also be used in MSX-DOS but under certain conditions. To learn more, see 
 
 Use them for developing MSX applications using Small Device C Compiler (SDCC).
 
-In the source code (\examples), you can find applications for testing and learning purposes.
+In the source code `\examples`, you can find applications for testing and learning purposes.
 
 This library is part of the [MSX fR3eL Project](https://github.com/mvac7/SDCC_MSX_fR3eL).
 
@@ -76,6 +78,8 @@ Name | Description
 
 
 ## 4 Functions
+
+### 4.1 TIMI Hook Functions
 
 <table>
 <tr><th colspan=2 align="left">Save_TIMI</th></tr>
@@ -120,6 +124,9 @@ Name | Description
 <td><code>Disable_TIMI();</code></td></tr>
 </table>
 
+
+
+### 4.2 KEYI Hook Functions
 
 <table>
 <tr><th colspan=2 align="left">Save_KEYI</th></tr>
@@ -199,23 +206,29 @@ Therefore we should **NOT ADD** `__interrupt` in our functions since it would ad
 
 
 
-Here is an example:
+**Example:**
+
+This example is illustrative only. 
+In the `\examples` folder of the project sources you will find a complete application where you can check the behavior of the library.
 
 ```c
 /* -----------------------------------------------------------------------------
    Any example...
 ----------------------------------------------------------------------------- */
+#include "../include/interruptM1.h"
 
 void TestM1();
 
 void my_TIMI1();
 void my_TIMI2();
 
-
+char conta;
 
 
 void main()
 {
+    conta=0;
+    
     Save_TIMI();   // save the old hook vector 
 
     Install_TIMI(my_TIMI1);  // Install the first function for the interrupt
@@ -232,7 +245,6 @@ void main()
 
     Restore_TIMI(); // restore the old hook vector
 }
-
 
 
 void TestM1()
@@ -253,8 +265,7 @@ void my_TIMI1()
 {
   PUSH_AF;
     
-// your C code goes here
-  
+  conta++;  
     
   POP_AF;
 }
@@ -267,8 +278,8 @@ void my_TIMI2() __naked
 __asm
   push AF
       
-; your Assembler code goes here
-
+  ld   HL,_conta
+  inc  (HL)
     
   pop AF
   ret  
@@ -287,19 +298,19 @@ __endasm;
 
 ### 6.1 English
 
-* Z80 Family - [CPU User Manual](https://zany80.github.io/documentation/Z80/UserManual.html) (by ZiLOG) [(PDF)](http://map.grauw.nl/resources/cpu/z80.pdf)
-* MSX2 Technical Handbook - [Chapter 2](https://github.com/Konamiman/MSX2-Technical-Handbook/blob/master/md/Chapter2.md#45-interrupt-usage) - 4.5 Interrupt usage
-* The MSX Red Book - [4. ROM BIOS - KEYINT](https://github.com/gseidler/The-MSX-Red-Book/blob/master/the_msx_red_book.md#chapter_4)
-* [Z80 Family Interrupt Structure](http://www.z80.info/1653.htm) (by Michael Moore)
-* MSX Computer Magazine - Nº 51 Januari 1992 - [Interrupts](http://map.grauw.nl/articles/interrupts.php) - Page 6. (In English on MSX Assembly Page) 
-* MSX Resource Center - Wiki - [System hooks](https://www.msx.org/wiki/System_hooks)
+- Z80 Family - [CPU User Manual](https://zany80.github.io/documentation/Z80/UserManual.html) (by ZiLOG) [(PDF)](http://map.grauw.nl/resources/cpu/z80.pdf)
+- MSX2 Technical Handbook - [Chapter 2](https://github.com/Konamiman/MSX2-Technical-Handbook/blob/master/md/Chapter2.md#45-interrupt-usage) - 4.5 Interrupt usage
+- The MSX Red Book - [4. ROM BIOS - KEYINT](https://github.com/gseidler/The-MSX-Red-Book/blob/master/the_msx_red_book.md#chapter_4)
+- [Z80 Family Interrupt Structure](http://www.z80.info/1653.htm) (by Michael Moore)
+- MSX Computer Magazine - Nº 51 Januari 1992 - [Interrupts](http://map.grauw.nl/articles/interrupts.php) - Page 6. (In English on MSX Assembly Page) 
+- MSX Resource Center - Wiki - [System hooks](https://www.msx.org/wiki/System_hooks)
 
 
 
 ### 6.2 Spanish
 
-* Karoshi MSX Community - [Interrupciones del MSX](http://karoshi.auic.es/index.php?topic=947.0) (por SapphiRe)
-* MSX Inside 005 - [Interrupciones](https://www.youtube.com/watch?v=dJymuMfgw9I) (por SapphiRe)
-* MSX Inside 006 - [Interrupciones VBLANK](https://www.youtube.com/watch?v=aUkHk_mjtOU) (por SapphiRe)
-* MSX Inside 007 - [Interrupciones de Línea](https://www.youtube.com/watch?v=E8nTwqaxEAg) (por SapphiRe)
+- Karoshi MSX Community - [Interrupciones del MSX](http://karoshi.auic.es/karoshi.auic.es/index.php/topic%2c947.0.html) (por SapphiRe)
+- MSX Inside 005 - [Interrupciones](https://www.youtube.com/watch?v=dJymuMfgw9I) (por SapphiRe)
+- MSX Inside 006 - [Interrupciones VBLANK](https://www.youtube.com/watch?v=aUkHk_mjtOU) (por SapphiRe)
+- MSX Inside 007 - [Interrupciones de Línea](https://www.youtube.com/watch?v=E8nTwqaxEAg) (por SapphiRe)
 

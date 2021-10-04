@@ -229,35 +229,35 @@ void TestHooks()
     LOCATE(12,9);
     PrintFNumber(contaTest/VFreq,32,5);
     
-    if (contaTest==10*50)
+    if (contaTest==10*VFreq)
     { 
         Disable_TIMI();
         LOCATE(0,cursorLine++);
         PRINT(">Disable_TIMI()");
     }
     
-    if (contaTest==20*50)
+    if (contaTest==20*VFreq)
     {
         Install_KEYI(my_KEYI);
         LOCATE(0,cursorLine++);
         PRINT(">Install_KEYI(my_KEYI) ");
     }
     
-    if (contaTest==30*50)
+    if (contaTest==30*VFreq)
     {
         Install_TIMI(my_TIMI1);  
         LOCATE(0,cursorLine++);
         PRINT(">Install_TIMI(my_TIMI1)");
     }
     
-    if (contaTest==40*50)
+    if (contaTest==40*VFreq)
     {
         Disable_KEYI();
         LOCATE(0,cursorLine++);
         PRINT(">Disable_KEYI()        ");
     }
     
-    if (contaTest==50*50)
+    if (contaTest==50*VFreq)
     {
         break;  //exit test
     }

@@ -50,6 +50,15 @@ Enjoy it!
 
 ---
 
+## Requirements
+
+- [Small Device C Compiler (SDCC) v4.1](http://sdcc.sourceforge.net/)
+- [Hex2bin v2.5](http://hex2bin.sourceforge.net/)
+
+<br/>
+
+---
+
 ## Acknowledgments
   
 I want to give a special thanks to all those who freely share their knowledge with the MSX developer community.

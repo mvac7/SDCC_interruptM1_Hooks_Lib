@@ -1,25 +1,19 @@
 # How to use the Interrupt M1 Hooks MSX SDCC Library
 
-
-
-## Sorry!: This text is pending correction of the English translation. <<<<<<<<
-
-<br/>
-
-
 ---
+
 ## Index
 
-- 1 Description
-- 2 Requirements
-- 3 Definitions
-- 4 Functions
-   - 4.1 TIMI Hook Functions
-   - 4.2 KEYI Hook Functions
-- 5 How to use this
-- 6 References
-   - 6.1 English
-   - 6.2 Spanish
+- [1 Description](#1-Description)
+- [2 Requirements](#2-Requirements)
+- [3 Definitions](#3-Definitions)
+- [4 Functions](#4-Functions)
+   - [4.1 TIMI Hook Functions](#41-TIMI-Hook-Functions)
+   - [4.2 KEYI Hook Functions](#42-KEYI-Hook-Functions)
+- [5 How to use this](#5-How-to-use-this)
+- [6 References](#6-References)
+   - [6.1 English](#61-English)
+   - [6.2 Spanish](#62-Spanish)
 
 <br/>
 
@@ -29,8 +23,6 @@
 
 This library provides you with various functions to have total control over the hooks used in the ISR of the M1 interrupt included in the MSX system (BIOS/MSX-DOS).
 
-This project is an Open Source library. You can add part or all of this code in your libraries/engines.
-
 It allows working with both the interruptions produced by the VDP (TIMI), and those produced by other peripherals (KEYI).
 
 This library can be used to program applications that run from MSX-BASIC and as ROMs. 
@@ -38,7 +30,8 @@ It can also be used in MSX-DOS but under certain conditions. To learn more, see 
 
 Use them for developing MSX applications using Small Device C Compiler (SDCC).
 
-In the source code `\examples`, you can find applications for testing and learning purposes.
+This project is an Open Source library. 
+You can add part or all of this code in your application development or include it in other libraries/engines.
 
 This library is part of the [MSX fR3eL Project](https://github.com/mvac7/SDCC_MSX_fR3eL).
 
@@ -52,8 +45,8 @@ Enjoy it!
 
 ## 2 Requirements
 
-* Small Device C Compiler (SDCC) v4.1 > http://sdcc.sourceforge.net/
-* Hex2bin v2.5 > http://hex2bin.sourceforge.net/
+- [Small Device C Compiler (SDCC) v4.1](http://sdcc.sourceforge.net/)
+- [Hex2bin v2.5](http://hex2bin.sourceforge.net/)
 
 
 <br/>
@@ -63,13 +56,13 @@ Enjoy it!
 
 ## 3 Definitions
 
-Name | Description
------------- | -------------
+Name       | Description
+---------- | -------------
 `DisableI` | Disable interrupts. <br/> Add `DI` code in Z80 assembler.
-`EnableI` | Enable interrupts. <br/> Add `EI` code in Z80 assembler.
-`PUSH_AF` | Saves the AF value on the stack. Required for starting TIMI (VBLANK) type functions. <br/> Add `PUSH AF` code in Z80 assembler.
-`POP_AF` | Retrieves the value of AF from the stack. Required for the end of TIMI (VBLANK) type functions. <br/> Add `POP AF` code in Z80 assembler.
-`HALT` | Suspends all actions until the next interrupt. <br/> Add `HALT` code in Z80 assembler.
+`EnableI`  | Enable interrupts. <br/> Add `EI` code in Z80 assembler.
+`PUSH_AF`  | Saves the AF value on the stack. Required for starting TIMI (VBLANK) type functions. <br/> Add `PUSH AF` code in Z80 assembler.
+`POP_AF`   | Retrieves the value of AF from the stack. Required for the end of TIMI (VBLANK) type functions. <br/> Add `POP AF` code in Z80 assembler.
+`HALT`     | Suspends all actions until the next interrupt. <br/> Add `HALT` code in Z80 assembler.
 
 
 <br/>
@@ -202,7 +195,7 @@ If your application is small, you should copy your function in the highest area 
 although you can also substitute the ISR of the system for yours but it will require a different library than this one.
 
 | ATTENTION! |
-| --- | 
+| ---------- | 
 | SDCC provides some extended keywords to program an Interrupt Service Routine (ISR), but it is useless in our case as we use the system ISR (BIOS). <br/> Therefore we should **NOT ADD** `__interrupt` in our functions since it would add redundant code that could affect the correct execution of our program. |
 
 
@@ -287,7 +280,6 @@ __asm
 __endasm;
 }
 
-
 ```
 
 
@@ -315,3 +307,9 @@ __endasm;
 - MSX Inside 006 - [Interrupciones VBLANK](https://www.youtube.com/watch?v=aUkHk_mjtOU) (por SapphiRe)
 - MSX Inside 007 - [Interrupciones de Línea](https://www.youtube.com/watch?v=E8nTwqaxEAg) (por SapphiRe)
 
+<br/>
+
+---
+
+![Creative Commons License](https://i.creativecommons.org/l/by-nc/4.0/88x31.png) 
+<br/>This document is licensed under a [Creative Commons Attribution-NonCommercial 4.0 International License](http://creativecommons.org/licenses/by-nc/4.0/).
